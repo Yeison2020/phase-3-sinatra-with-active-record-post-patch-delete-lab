@@ -23,4 +23,25 @@ class ApplicationController < Sinatra::Base
     baked_good.to_json
   end
 
+  post '/baked_goods' do 
+   new_Baked_good =  BakedGood.create(
+     name: params[:name],
+     price: params[:price].
+     bakery_id: params[:id]
+   )
+   new_Baked_good.to_json
+  end
+
+  patch '/bakeries/:id' do
+    update_Bake = Bakery.find(params[:id])
+    update_Bake.update(name: params[:name])
+    update_Bake.to_json
+  end
+
+  delete '/baked_goods/:id' do
+    delete_baked = BakedGood.find(params[:id])
+    delete_baked.destroy
+    delete_baked.to_json
+  end
+
 end
